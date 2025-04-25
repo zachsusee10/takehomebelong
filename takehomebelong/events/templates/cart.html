@@ -1,0 +1,10 @@
+<h1>Upcoming Events</h1>
+
+{% for event in cart %}
+  <div>
+    <h2>{{ event.title }}</h2>
+    <p>{{ event.description }}</p>
+    <p>${{ event.price }}</p>
+    <p>{{ event.location }} – {{ event.start_date }} at {{ event.start_time }}</p>
+  </div>
+{% endfor %}

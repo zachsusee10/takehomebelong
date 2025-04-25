@@ -6,5 +6,6 @@
     <p>{{ event.description }}</p>
     <p>${{ event.price }}</p>
     <p>{{ event.location }} – {{ event.start_date }} at {{ event.start_time }}</p>
+    <a href="{% url 'event_view' %}">View Event</a> 
   </div>
 {% endfor %}
