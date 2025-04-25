@@ -1,0 +1,13 @@
+{% block title %}{{ event.title }} - Event Organizer{% endblock %}
+
+{% block content %}
+    <h2>{{ event.title }}</h2>
+    <img src="{{ event.image }}" alt="{{ event.title }}" width="300">
+    <p><strong>Price:</strong> ${{ event.price }}</p>
+    <p><strong>Date:</strong> {{ event.startdate|date:"F j, Y" }}</p>
+    <p><strong>Start Time:</strong> {{ event.start_time|time:"g:i A" }}</p>
+    <p><strong>End Time:</strong> {{ event.end_time|time:"g:i A" }}</p>
+    <p><strong>Location:</strong> {{ event.location }}</p>
+    <p><strong>Description:</strong></p>
+    <p>{{ event.description }}</p>
+{% endblock %}
