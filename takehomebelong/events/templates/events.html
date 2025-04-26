@@ -1,18 +1,20 @@
-{% block title %}{{ event.title }} - Event Organizer{% endblock %}
+{% load static %}
+<link rel="stylesheet" href="{% static 'css/styles.css' %}">
 
-{% block content %}
+<div class="event-card">
     <h2>{{ event.title }}</h2>
     <img src="{{ event.image }}" alt="{{ event.title }}" width="300">
     <p><strong>Price:</strong> ${{ event.price }}</p>
-    <p><strong>Date:</strong> {{ event.startdate|date:"F j, Y" }}</p>
+    <p><strong>Date:</strong> {{ event.start_date|date:"F j, Y" }}</p>
     <p><strong>Start Time:</strong> {{ event.start_time|time:"g:i A" }}</p>
     <p><strong>End Time:</strong> {{ event.end_time|time:"g:i A" }}</p>
     <p><strong>Location:</strong> {{ event.location }}</p>
-    <p><strong>Description:</strong></p>
-    <p>{{ event.description }}</p>
+    <p><strong>Description:</strong> {{ event.description }}</p>
 
     <form action="{% url 'add_to_cart' event.id %}" method="POST">
         {% csrf_token %}
         <button type="submit">Add to Cart</button>
-        </form>
-{% endblock %}
+    </form>
+
+    <a href="{% url 'catalog' %}" class="button">← Return to Catalog</a>
+</div>

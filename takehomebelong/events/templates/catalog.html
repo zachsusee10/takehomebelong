@@ -1,11 +1,20 @@
-<h1>Upcoming Events</h1>
+{% load static %}
+<link rel="stylesheet" href="{% static 'css/styles.css' %}">
+
+<header>
+  <h1>Event Catalog</h1>
+  <a href="{% url 'cart' %}" class="cart-link">View Cart</a>
+</header>
 
 {% for event in events %}
-  <div>
+  <div class="event-card">
     <h2>{{ event.title }}</h2>
+    <img src="{{ event.image }}" alt="{{ event.title }}" width="300">
     <p>{{ event.description }}</p>
-    <p>${{ event.price }}</p>
-    <p>{{ event.location }} – {{ event.start_date }} at {{ event.start_time }}</p>
-    <a href="{% url 'event_view' %}">View Event</a> 
+    <p><strong>Price:</strong> ${{ event.price }}</p>
+    <p><strong>Location:</strong> {{ event.location }} – {{ event.start_date }} at {{ event.start_time }}</p>
+    <a href="{% url 'event_detail' event.id %}" class="button">View Event</a>
+    
   </div>
 {% endfor %}
+

@@ -17,14 +17,14 @@ def add_to_cart(request, event_id):
     if event_id not in cart:
         cart.append(event_id)
         request.session['cart'] = cart
-    return redirect('catalog.html')
+    return redirect('catalog')
 
 def remove_from_cart(request, event_id):
     cart = request.session.get('cart', [])
     if event_id in cart:
         cart.remove(event_id)
         request.session['cart'] = cart
-    return redirect('cart.html')
+    return redirect('cart')
 
 def cart_view(request):
     cart = request.session.get('cart', [])

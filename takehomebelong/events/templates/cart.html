@@ -1,10 +1,24 @@
-<h1>Upcoming Events</h1>
+{% load static %}
+<link rel="stylesheet" href="{% static 'css/styles.css' %}">
 
-{% for event in cart %}
-  <div>
+<header>
+  <h1>Your Cart</h1>
+  <a href="{% url 'catalog' %}" class="cart-link">← Back to Events</a>
+</header>
+
+{% for event in events %}
+  <div class="event-card">
     <h2>{{ event.title }}</h2>
+    <img src="{{ event.image }}" alt="{{ event.title }}" width="300">
     <p>{{ event.description }}</p>
-    <p>${{ event.price }}</p>
+    <p><strong>Price:</strong> ${{ event.price }}</p>
     <p>{{ event.location }} – {{ event.start_date }} at {{ event.start_time }}</p>
+
+    <form action="{% url 'remove_from_cart' event.id %}" method="POST">
+      {% csrf_token %}
+      <button type="submit">Remove from Cart</button>
+    </form>
   </div>
+{% empty %}
+  <p>Your cart is empty.</p>
 {% endfor %}
